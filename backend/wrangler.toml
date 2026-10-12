@@ -1,32 +1,18 @@
-name = "cloudpaste-backend"
+name = "cloudpaste-spa"
+account_id = "5f0f967f8a7514a497861b1e1f7147e5"
 main = "unified-entry.js"
 compatibility_date = "2025-09-01"
 compatibility_flags = ["nodejs_compat"]
+keep_vars = true
+workers_dev = false
+preview_urls = false
+routes = [{ pattern = "cloudpaste.newstardev.me", custom_domain = true }]
 
-# 开发服务器配置
-[dev]
-port = 8787
-local_protocol = "http"
-
-# 环境变量
-[vars]
-# 用于加密敏感配置的密钥
-ENCRYPTION_SECRET = "default-encryption-key"
-# 管理员Token过期天数，默认7天
-ADMIN_TOKEN_EXPIRY_DAYS = "7"
-# 调试开关（默认 false，不区分大小写）
-# - DEBUG_DRIVER_CACHE=true：开启驱动缓存命中日志
-# DEBUG_DRIVER_CACHE = "false"
-
-# 绑定D1数据库
-# 需要替换为实际的数据库ID
 [[d1_databases]]
 binding = "DB"
 database_name = "cloudpaste-db"
-database_id = "xxxxxxxxxxxxxxxxx"
+database_id = "ece680e8-a11e-4e2f-ad84-e7c6c8da7f94"
 
-# Cloudflare Workflows 绑定
-# 用于异步任务作业的持久化执行
 [[workflows]]
 binding = "JOB_WORKFLOW"
 name = "job-workflow"
@@ -34,3 +20,17 @@ class_name = "JobWorkflow"
 
 [triggers]
 crons = ["*/5 * * * *"]
+
+[assets]
+directory = "../frontend/dist"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*", "/dav/*"]
+
+[observability]
+enabled = true
+head_sampling_rate = 0.1
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+
