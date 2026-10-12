@@ -1,5 +1,9 @@
 # CloudPaste 📋
 
+## 本仓库的生产部署
+
+本仓库通过 `cloudpaste-spa` Worker 和静态资源提供 `cloudpaste.newstardev.me`。`backend/wrangler.toml` 保存生产数据库、工作流、域名和定时任务配置；原有加密密钥保存在 Worker 密钥中。安装前后端依赖后，在 `backend` 运行 `npm run deploy`，或通过 GitHub Actions 手动执行 **Deploy CloudPaste production**，使用仓库已有的 Cloudflare 部署密钥。以下保留上游项目的通用指南。
+
 <div align="center">
     <p>
     <a href="README_CN.md">中文</a> | <a href="README.md">English</a> |

@@ -1,5 +1,9 @@
 # CloudPaste 📋
 
+## Production deployment for this repository
+
+This fork runs `cloudpaste.newstardev.me` as the `cloudpaste-spa` Worker with static assets. `backend/wrangler.toml` defines the production database, workflow, domain and schedule; the existing encryption key is stored as a Worker secret. Install the frontend and backend dependencies, then run `npm run deploy` from `backend`, or manually run **Deploy CloudPaste production** in GitHub Actions using the existing Cloudflare deployment secrets. The upstream guide below describes the general project.
+
 <div align="center">
     <p>
     <a href="README_CN.md">中文</a> | <a href="README.md">English</a> |
